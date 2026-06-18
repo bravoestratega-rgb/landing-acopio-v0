@@ -1,0 +1,104 @@
+/* 1. RESETEO GLOBAL (Tu lienzo en blanco) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa; /* Un gris muy suave y limpio */
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* 2. EL HERO (Tu cabecera principal) */
+.hero-section {
+    background-color: #2c3e50; /* Azul oscuro corporativo/médico */
+    color: white;
+    text-align: center;
+    padding: 4rem 1.5rem;
+}
+
+.hero-contenido {
+    max-width: 800px;
+    margin: 0 auto; /* Esto centra la caja en la pantalla */
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #f1c40f; /* Un amarillo cálido para la palabra esperanza */
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* 3. CONTENEDOR PRINCIPAL Y SECCIONES */
+.contenedor-principal {
+    max-width: 1000px;
+    margin: -2rem auto 3rem auto; /* Sube ligeramente sobre la cabecera */
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave de elevación */
+}
+
+.seccion-acopios, .seccion-faq {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #f1c40f;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+/* 4. LA GRILLA DE ACOPIOS (Donde trabajará JS) */
+.grilla-acopios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Estas son las tarjetas que JavaScript va a inyectar */
+.tarjeta-acopio {
+    background-color: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 5px solid #27ae60; /* Verde de acción/reciclaje */
+}
+
+.tarjeta-acopio h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 5. PREGUNTAS FRECUENTES (FAQ) */
+.divisor {
+    border: 0;
+    height: 1px;
+    background-color: #e1e8ed;
+    margin: 3rem 0;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+}
+
+.faq-item h3 {
+    font-size: 1.1rem;
+    color: #e67e22; /* Naranja para resaltar la pregunta */
+    margin-bottom: 0.3rem;
+}
