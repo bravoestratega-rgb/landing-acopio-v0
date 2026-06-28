@@ -1,42 +1,36 @@
-// 1. EL CATÁLOGO (Array de Objetos)
-// Cada objeto {} representa un punto físico real
-const puntosDeAcopio = [
-    {
-        zona: "Zona Sur - San Miguel",
-        direccion: "Calle 21, galería principal",
-        whatsapp: "59170000001" // Reemplaza con los números reales
-    },
-    {
-        zona: "Centro - El Prado",
-        direccion: "Frente al cine Monje Campero",
-        whatsapp: "59170000002"
-    },
-    {
-        zona: "Sopocachi",
-        direccion: "Plaza Abaroa, esquina 20 de Octubre",
-        whatsapp: "59170000003"
+// 1. Aquí pones la URL larga que te dio Google Sheets (formato CSV)
+const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTpQTtaOeCeWLxpyb6xr-0Jr26yCKt49Qdxq3-i7f4TWRsdATKkhvp5r9lyGTwta5nX73AjxUSHMW_y/pub?gid=0&single=true&output=csv';
+
+// 2. Esta parte le dice a la librería PapaParse: "Ve a internet, descarga ese archivo y cuando termines, ejecutas la función de abajo"
+Papa.parse(urlCSV, {
+    download: true,
+    header: true, 
+    complete: function(results) {
+        // 'results.data' es el array que viene del Excel
+        const puntosDeAcopio = results.data;
+        
+        // Llamamos a la función que dibuja las tarjetas, pasándole los datos reales
+        renderizarPuntos(puntosDeAcopio);
     }
-];
-
-// 2. EL PUENTE (Conectamos JS con HTML)
-const contenedor = document.getElementById('contenedor-acopios');
-
-// 3. LA CINTA TRANSPORTADORA (.forEach)
-puntosDeAcopio.forEach(function(punto) {
-    
-    // 4. EL MOLDE (Template Literal)
-    // Usamos las comillas invertidas (backticks) `` para poder mezclar HTML con variables
-    const tarjetaHTML = `
-        <div class="tarjeta-acopio">
-            <h3>${punto.zona}</h3>
-            <p>📍 ${punto.direccion}</p>
-            <a href="https://wa.me/${punto.whatsapp}" target="_blank" style="color: #27ae60; font-weight: bold; text-decoration: none;">
-                💬 Contactar por WhatsApp
-            </a>
-        </div>
-    `;
-
-    // 5. LA INYECCIÓN
-    // Le decimos al contenedor: "Conserva lo que ya tienes adentro, y súmale esta nueva tarjeta"
-    contenedor.innerHTML = contenedor.innerHTML + tarjetaHTML;
 });
+
+// 3. Esta es tu máquina de dibujar (no la borres, solo asegúrate de que esté debajo)
+function renderizarPuntos(lista) {
+    const contenedor = document.getElementById('contenedor-acopios');
+    contenedor.innerHTML = ''; 
+
+    lista.forEach(function(punto) {
+        contenedor.innerHTML += `
+            <div class="tarjeta-acopio">
+                <h3>📍 ${punto.zona}</h3>
+                <p>🏠 ${punto.direccion}</p>
+                <div class="contacto-box">
+                    <p>📞 WhatsApp: ${punto.whatsapp}</p>
+                    <a href="https://wa.me/${punto.whatsapp}" target="_blank" class="btn-whatsapp">
+                        Contactar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        `;
+    });
+}
